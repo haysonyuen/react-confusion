@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Main from './components/MainComponent'
-import Menu from './components/MenuComponent';
-import Dishdetail from './components/DishdetailComponent';
 import './App.css';
 
 
