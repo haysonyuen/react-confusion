@@ -17,7 +17,7 @@ import { baseUrl } from '../shared/baseUrl';
         )
     }
 
-   function RenderComments({comments, addComment, dishId}) {
+   function RenderComments({comments, postComment, dishId}) {
 
        console.log('selectedDish comments are',comments)
         if (!comments) {
@@ -34,7 +34,7 @@ import { baseUrl } from '../shared/baseUrl';
         return(
             <div>
                 {detail}
-                <CommentForm dishId = {dishId} addComment = {addComment} />
+                <CommentForm dishId = {dishId} postComment = {postComment} />
             </div>
             
             );
@@ -83,7 +83,7 @@ import { baseUrl } from '../shared/baseUrl';
                     <div className= "col-12 col-md-5 m-1">
                         <h4>Comments</h4>
                         <RenderComments comments = {props.comments} 
-                            addComment = {props.addComment}
+                            postComment = {props.postComment}
                             dishId = {props.selectedDish.id}/>
                     </div>    
             </div>           
