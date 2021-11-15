@@ -4,16 +4,22 @@ import {Link} from 'react-router-dom'
 import CommentForm from './CommentFormComponent';
 import {Loading} from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade } from 'react-animation-components';
 
     function RenderDish({dish}) {
         return(
-        <Card>                        
-        <CardImg width="100%" src={ baseUrl + dish.image} alt={dish.name}/>
-        <CardBody>
-            <CardTitle> {dish.name} </CardTitle>
-            <CardText> {dish.description}</CardText>
-        </CardBody>
-        </Card>
+        <FadeTransform in 
+            transformProps={{
+                exitTranform: 'scale(0.5) translateY(-50%)'
+            }}>
+            <Card>                        
+            <CardImg width="100%" src={ baseUrl + dish.image} alt={dish.name}/>
+            <CardBody>
+                <CardTitle> {dish.name} </CardTitle>
+                <CardText> {dish.description}</CardText>
+            </CardBody>
+            </Card>
+        </FadeTransform>
         )
     }
 
@@ -23,14 +29,18 @@ import { baseUrl } from '../shared/baseUrl';
         if (!comments) {
             return <div></div>;
         }
-       const detail = <List type="unstyled"> {comments.map((comment)=> {
+       const detail = <List type="unstyled">  {comments.map((comment)=> {
         return (
-            <div key = {comment.id} className = "col-12 m-1">
-                <li> {comment.comment} </li>
-                {<li> --{comment.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))} </li> }
-            </div>
-        )})}</List> 
-
+            <Fade in>
+                <div key = {comment.id} className = "col-12 m-1">
+                    <li> {comment.comment} </li>
+                    {<li> --{comment.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))} </li> }
+                </div>
+            </Fade>
+        )})}
+         
+        </List> 
+       
         return(
             <div>
                 {detail}

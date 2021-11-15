@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap';
 import {Link} from 'react-router-dom';
-import { Control, Form, Errors, action } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 
 // Form Component can only be done in Class Component to support controlled form
 
@@ -11,7 +11,7 @@ const minLength = (len) => (val) => (val) && (val.length >= len);
 const isNumber = (val) => !isNaN(Number(val));
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9]+\.[A-Z]{2,4}$/i.test(val);
 
-class Contact extends Component{
+class Contact extends Component {
 
     constructor(props) {
         super(props);
@@ -21,10 +21,12 @@ class Contact extends Component{
 
 
     handleSubmit(values) {
+        this.props.postFeedback(values.firstname, values.lastname, values.telnum, values.email, values.agree, values.contactType, values.message );
         console.log('Event:', values);
         console.log('Current State is:' + JSON.stringify(values));
         alert('Current State is:' + JSON.stringify(values));
         this.props.resetFeedbackForm();
+        
     }
 
     render(){
